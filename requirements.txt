@@ -6,3 +6,4 @@ moviepy
 pydub
 imageio
 imageio-ffmpeg
+moviepy.editor
