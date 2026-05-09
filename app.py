@@ -38,14 +38,14 @@ audio_input = st.text_input("Input Audio Path")
 
 audio_output = st.text_input("Output Audio Path")
 
-start_ms = st.number_input(
-    "Start Time",
+start_sec = st.number_input(
+    "Start Time (seconds)",
     value=0
 )
 
-end_ms = st.number_input(
-    "End Time",
-    value=5000
+end_sec = st.number_input(
+    "End Time (seconds)",
+    value=5
 )
 
 if st.button("Trim Audio"):
