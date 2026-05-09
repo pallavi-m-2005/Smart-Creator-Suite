@@ -5,6 +5,19 @@ from media_tools import (
     trim_audio
 )
 
+from backup_tool import (
+    backup_folder,
+    compress_folder,
+    restore_backup
+)
+
+from system_dashboard import (
+    get_system_stats,
+    plot_graph
+)
+
+from file_watcher import start_watcher
+
 st.title("Media Tools")
 
 video_input = st.text_input("Input Video Path")
