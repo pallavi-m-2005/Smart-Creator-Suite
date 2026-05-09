@@ -1,0 +1,6 @@
+streamlit
+psutil
+matplotlib
+watchdog
+moviepy
+pydub
