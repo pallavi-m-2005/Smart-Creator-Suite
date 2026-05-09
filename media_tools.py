@@ -1,4 +1,5 @@
-from moviepy.editor import VideoFileClip
+#from moviepy.editor import VideoFileClip
+from moviepy import *
 from pydub import AudioSegment
 
 
