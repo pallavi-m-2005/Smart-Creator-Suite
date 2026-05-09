@@ -15,6 +15,8 @@ def compress_video(input_path, output_path):
         bitrate="500k"
     )
 
+    video.close()
+
     return "Video Compressed Successfully"
 
 
@@ -24,6 +26,9 @@ def trim_audio(input_path, output_path, start_ms, end_ms):
 
     trimmed_audio = audio[start_ms:end_ms]
 
-    trimmed_audio.export(output_path, format="mp3")
+    trimmed_audio.export(
+        output_path,
+        format="mp3"
+    )
 
     return "Audio Trimmed Successfully"
