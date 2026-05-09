@@ -2,8 +2,7 @@ streamlit
 psutil
 matplotlib
 watchdog
-moviepy==1.0.3
+moviepy>=2.0.0
 pydub
 imageio
 imageio-ffmpeg
-moviepy.editor
