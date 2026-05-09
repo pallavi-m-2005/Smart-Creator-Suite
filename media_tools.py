@@ -1,5 +1,9 @@
 #from moviepy.editor import VideoFileClip
-from moviepy import *
+try:
+    from moviepy.editor import ImageClip, concatenate_videoclips, AudioFileClip
+except ImportError:
+    from moviepy import ImageClip, concatenate_videoclips, AudioFileClip
+import yt_dlp
 from pydub import AudioSegment
 
 
