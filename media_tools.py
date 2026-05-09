@@ -3,15 +3,21 @@ try:
 except ImportError:
     from moviepy.editor import VideoFileClip
 
-from pydub import AudioSegment
+try:
+    from moviepy import (
+        VideoFileClip,
+        AudioFileClip
+    )
+except ImportError:
+    from moviepy.editor import (
+        VideoFileClip,
+        AudioFileClip
+    )
 
 
 def compress_video(input_path, output_path):
 
-    uploaded_video = st.file_uploader(
-    "Upload Video",
-    type=["mp4", "mov", "avi"]
-)
+    video = VideoFileClip(input_path)
 
     video.write_videofile(
         output_path,
@@ -23,15 +29,23 @@ def compress_video(input_path, output_path):
     return "Video Compressed Successfully"
 
 
-def trim_audio(input_path, output_path, start_ms, end_ms):
+def trim_audio(
+    input_path,
+    output_path,
+    start_sec,
+    end_sec
+):
 
-    audio = AudioSegment.from_file(input_path)
+    audio = AudioFileClip(input_path)
 
-    trimmed_audio = audio[start_ms:end_ms]
-
-    trimmed_audio.export(
-        output_path,
-        format="mp3"
+    trimmed_audio = audio.subclipped(
+        start_sec,
+        end_sec
     )
+
+    trimmed_audio.write_audiofile(output_path)
+
+    audio.close()
+    trimmed_audio.close()
 
     return "Audio Trimmed Successfully"
