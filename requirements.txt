@@ -1,5 +1,10 @@
-streamlit
-moviepy>=2.0.0
-pydub
+streamlit==1.57.0
+moviepy==2.2.1
+pydub==0.25.1
 imageio
 imageio-ffmpeg
+yt-dlp
+psutil
+matplotlib
+watchdog
+numpy<2
