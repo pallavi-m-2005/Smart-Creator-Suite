@@ -1,8 +1,5 @@
-psutil
-matplotlib
-watchdog
+streamlit
 moviepy>=2.0.0
 pydub
 imageio
 imageio-ffmpeg
-yt-dlp
