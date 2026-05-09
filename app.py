@@ -20,20 +20,41 @@ from file_watcher import start_watcher
 
 st.title("Media Tools")
 
-video_input = st.text_input("Input Video Path")
+uploaded_video = st.file_uploader(
+    "Upload Video",
+    type=["mp4", "mov", "avi"]
+)
 
-video_output = st.text_input("Output Video Path")
+if uploaded_video is not None:
 
-if st.button("Compress Video"):
+    input_path = uploaded_video.name
 
-    msg = compress_video(
-        video_input,
-        video_output
-    )
+    with open(input_path, "wb") as f:
+        f.write(uploaded_video.getbuffer())
 
-    st.success(msg)
+    output_path = "compressed_video.mp4"
 
+    if st.button("Compress Video"):
 
+        try:
+
+            msg = compress_video(
+                input_path,
+                output_path
+            )
+
+            st.success(msg)
+
+            with open(output_path, "rb") as file:
+                st.download_button(
+                    "Download Compressed Video",
+                    file,
+                    file_name="compressed_video.mp4"
+                )
+
+        except Exception as e:
+
+            st.error(str(e))
 audio_input = st.text_input("Input Audio Path")
 
 audio_output = st.text_input("Output Audio Path")
