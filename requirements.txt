@@ -4,3 +4,5 @@ matplotlib
 watchdog
 moviepy
 pydub
+imageio
+imageio-ffmpeg
