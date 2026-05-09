@@ -8,7 +8,10 @@ from pydub import AudioSegment
 
 def compress_video(input_path, output_path):
 
-    video = VideoFileClip(input_path)
+    uploaded_video = st.file_uploader(
+    "Upload Video",
+    type=["mp4", "mov", "avi"]
+)
 
     video.write_videofile(
         output_path,
