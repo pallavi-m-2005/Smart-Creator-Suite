@@ -51,10 +51,10 @@ end_sec = st.number_input(
 if st.button("Trim Audio"):
 
     msg = trim_audio(
-        audio_input,
-        audio_output,
-        start_ms,
-        end_ms
-    )
+    audio_input,
+    audio_output,
+    start_sec,
+    end_sec
+)
 
     st.success(msg)
