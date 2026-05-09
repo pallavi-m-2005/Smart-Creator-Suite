@@ -55,9 +55,11 @@ if uploaded_video is not None:
         except Exception as e:
 
             st.error(str(e))
-audio_input = st.text_input("Input Audio Path")
-
-audio_output = st.text_input("Output Audio Path")
+            
+uploaded_audio = st.file_uploader(
+    "Upload Audio",
+    type=["mp3", "wav"]
+)
 
 start_sec = st.number_input(
     "Start Time (seconds)",
@@ -69,13 +71,35 @@ end_sec = st.number_input(
     value=5
 )
 
-if st.button("Trim Audio"):
+if uploaded_audio is not None:
 
-    msg = trim_audio(
-    audio_input,
-    audio_output,
-    start_sec,
-    end_sec
-)
+    input_audio_path = uploaded_audio.name
 
-    st.success(msg)
+    with open(input_audio_path, "wb") as f:
+        f.write(uploaded_audio.getbuffer())
+
+    output_audio_path = "trimmed_audio.mp3"
+
+    if st.button("Trim Audio"):
+
+        try:
+
+            msg = trim_audio(
+                input_audio_path,
+                output_audio_path,
+                start_sec,
+                end_sec
+            )
+
+            st.success(msg)
+
+            with open(output_audio_path, "rb") as file:
+                st.download_button(
+                    "Download Trimmed Audio",
+                    file,
+                    file_name="trimmed_audio.mp3"
+                )
+
+        except Exception as e:
+
+            st.error(str(e))
